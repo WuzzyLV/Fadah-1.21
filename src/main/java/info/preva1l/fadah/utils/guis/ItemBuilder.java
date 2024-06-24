@@ -1,8 +1,11 @@
 package info.preva1l.fadah.utils.guis;
 
+import com.google.common.collect.Multimap;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -37,6 +40,10 @@ public class ItemBuilder {
 
     public static ItemBuilder copyOf(ItemStack item) {
         return new ItemBuilder(item.clone());
+    }
+
+    public ItemBuilder setAttributes(Multimap<Attribute,AttributeModifier> map){
+        return meta(meta -> meta.setAttributeModifiers(map));
     }
 
     public ItemBuilder edit(Consumer<ItemStack> function) {

@@ -186,10 +186,12 @@ public class MainMenu extends FastInv {
             ItemBuilder itemBuilder = new ItemBuilder(cat.icon())
                     .name(StringUtils.colorize(cat.name()))
                     .addLore(StringUtils.colorizeList(cat.description()))
+                    .setAttributes(null)
                     .flags(ItemFlag.HIDE_ENCHANTS);
             if (category == cat) {
                 itemBuilder.name(StringUtils.colorize(cat.name() + "&r " + Lang.CATEGORY_SELECTED.toFormattedString()))
                         .enchant(Enchantment.DURABILITY);
+                itemBuilder.flags(ItemFlag.HIDE_ENCHANTS);
             }
             if (selectorMappings.containsKey(i)) {
                 int slot = selectorMappings.get(i);

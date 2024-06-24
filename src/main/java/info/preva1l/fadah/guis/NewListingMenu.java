@@ -38,7 +38,7 @@ public class NewListingMenu extends FastInv {
 
         player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
 
-        timeToDelete = Instant.now().plus(6, ChronoUnit.HOURS);
+        timeToDelete = Instant.now().plus(24, ChronoUnit.HOURS);
 
         setClock();
 
@@ -115,7 +115,9 @@ public class NewListingMenu extends FastInv {
 
         player.closeInventory();
 
-        String itemname = listing.itemStack().getItemMeta().getDisplayName().isBlank() ? listing.itemStack().getType().name() : listing.itemStack().getItemMeta().getDisplayName();
+        String itemname = listing.itemStack().getItemMeta().getDisplayName().isBlank() ?
+                listing.itemStack().getI18NDisplayName() :
+                listing.itemStack().getItemMeta().getDisplayName();
         String message = String.join("\n", Lang.NOTIFICATION_NEW_LISTING.toLore(itemname,
                 new DecimalFormat(Config.DECIMAL_FORMAT.toString()).format(listing.price()), TimeUtil.formatTimeUntil(listing.deletionDate()), PermissionsData.getCurrentListings(player), PermissionsData.valueFromPermission(PermissionsData.PermissionType.MAX_LISTINGS, player)));
         player.sendMessage(message);
